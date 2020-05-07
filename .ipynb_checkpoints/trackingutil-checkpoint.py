@@ -48,6 +48,7 @@ class video_tracker:
         return
     def get_average(self):
         return sum([o.timeInframe() for o in (self.active_obs_trackers + self.oof_obs_trackers)]) / self.get_num_objects()
-    
+    def get_num_current_objects(self):
+        return len(self.active_obs_trackers)
     def get_num_objects(self):
         return len(self.active_obs_trackers + self.oof_obs_trackers)
