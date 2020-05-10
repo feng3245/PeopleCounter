@@ -6,31 +6,25 @@ questions.
 
 ## Explaining Custom Layers
 
-The process behind converting custom layers involves...
+I've added the cpu extension for the mobile net single shot detection model
 
-Some of the potential reasons for handling custom layers are...
+There might be reasons to handle customer layers either of your own operations or any that wasn't supported by the model converter. You can either manually create your own extension or simply use your operator with output of the network
 
 ## Comparing Model Performance
 
-My method(s) to compare models before and after conversion to Intermediate Representations
-were...
-
-The difference between model accuracy pre- and post-conversion was...
-
-The size of the model pre- and post-conversion was...
-
-The inference time of the model pre- and post-conversion was...
-
+Haven't really done this but would be easy to experiment with a sample in a seperate notebook on the video or several frames from the video. By taking snapshot of start time and end time for the inference time and average accuracy for the accuracy. We can also use summary to view the number of parameters of both models to estimate model size
 ## Assess Model Use Cases
 
-Some of the potential use cases of the people counter app are...
+1. Estimate people in a building
+2. Estimate visitor count
 
-Each of these use cases would be useful because...
+The first would be useful for enforcing policy with respect to capacity IE elevator load and with recent pandemic situation store capacity. The second case is useful for helping with understanding potential needs and demands for things like office supply/groceries etc.
 
 ## Assess Effects on End User Needs
 
 Lighting, model accuracy, and camera focal length/image size have different effects on a
 deployed edge model. The potential effects of each of these are as follows...
+The model for mobilenet SSD is likely trained primarily in high lighting situations where low lighting may effect model accuracy. The method used for tracking works well with a stationary camera as the bounding box is tracked per person with extension to the bounding box. If the camera is assumed to move then new methods of tracking will be needed. Potentially we can add more configuration flags for different tracking methods using mixin and dependency injections along with TDD to implement such need.
 
 ## Model Research
 
