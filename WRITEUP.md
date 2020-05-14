@@ -3,12 +3,13 @@
 You can use this document as a template for providing your project write-up. However, if you
 have a different format you prefer, feel free to use it as long as you answer all required
 questions.
+## Model used
+
+Tensorflow model for single shot detection at http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v2_coco_2018_03_29.tar.gz
 
 ## Explaining Custom Layers
 
-I've added the cpu extension for the mobile net single shot detection model
-
-There might be reasons to handle customer layers either of your own operations or any that wasn't supported by the model converter. You can either manually create your own extension or simply use your operator with output of the network
+There might be reasons to handle custom layers either of your own operations or any that wasn't supported by the model converter. You can either manually create your own extension or simply use your operator with output of the network that was converted using the model converter. Custom are layers not directly supported by the model converter and the need to convert custom layers is due to operators not directly recognized or supported by the model converter. You seldomly need to work with custom layers.
 
 ## Comparing Model Performance
 

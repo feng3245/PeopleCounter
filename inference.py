@@ -42,10 +42,13 @@ class Network:
 
         # Read the IR as a IENetwork
         self.network = IENetwork(model=model_xml, weights=model_bin)
-
-        # Load the IENetwork into the plugin
-        self.exec_network = self.plugin.load_network(self.network, device)
-
+        supportedLayers = self.plugin.query_network(self.network, 'CPU')
+        if all([nl in supportedLayers for nl in self.network.layers]):
+            # Load the IENetwork into the plugin
+            self.exec_network = self.plugin.load_network(self.network, device)
+        else:
+            print("Following layers are not supported "+str([nl for nl in network.layers if nl not in supportedLayers]))
+            return
         # Get the input layer
         self.input_blob = next(iter(self.network.inputs))
         self.output_blob = next(iter(self.network.outputs))

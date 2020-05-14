@@ -108,6 +108,8 @@ def infer_on_stream(args, client):
     :param client: MQTT client
     :return: None
     """
+    if args.input.split('.')[-1].lower() == 'txt':
+            raise Exception('Do not want!')
     # Initialise the class
     infer_network = Network()
     # Set Probability threshold for detections
@@ -117,8 +119,9 @@ def infer_on_stream(args, client):
     infer_network.load_model(args.model, args.device, CPU_EXTENSION)
     net_input_shape = infer_network.get_input_shape()
     ### TODO: Handle the input stream ###
-    cap = cv2.VideoCapture(args.input)
-    cap.open(args.input)
+    cap = cv2.VideoCapture(args.input if args.input != 'CAM' else 0)
+    if args.input != 'CAM':
+        cap.open(args.input)
 
     # Grab the shape of the input 
     width = int(cap.get(3))
@@ -159,6 +162,8 @@ def infer_on_stream(args, client):
         sys.stdout.buffer.write(frame)
         sys.stdout.flush()
         ### TODO: Write an output image if `single_image_mode` ###
+        if args.input.split('.')[-1].lower() in ['jpg', 'jpeg', 'png']:
+            cv2.imwrite(frame, 'output.of.' + args.input)
     cap.release()
     cv2.destroyAllWindows()
     ### TODO: Disconnect from MQTT
