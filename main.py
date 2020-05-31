@@ -164,6 +164,10 @@ def infer_on_stream(args, client):
         ### TODO: Write an output image if `single_image_mode` ###
         if args.input.split('.')[-1].lower() in ['jpg', 'jpeg', 'png']:
             cv2.imwrite(frame, 'output.of.' + args.input)
+            cap.release()
+            cv2.destroyAllWindows()
+            ### TODO: Disconnect from MQTT
+            client.disconnect()
     cap.release()
     cv2.destroyAllWindows()
     ### TODO: Disconnect from MQTT

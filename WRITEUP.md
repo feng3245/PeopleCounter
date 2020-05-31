@@ -6,6 +6,7 @@ questions.
 ## Model used
 
 Tensorflow model for single shot detection at http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v2_coco_2018_03_29.tar.gz
+Conversion is performed in modelConversion.ipynb
 
 ## Explaining Custom Layers
 
@@ -14,6 +15,11 @@ There might be reasons to handle custom layers either of your own operations or 
 ## Comparing Model Performance
 
 Performance is compared in a scientific manner using the coco dataset in MetricCalculationForInference.ipynb. The result for IOU and inference speed is shown at the end. The average IOU value on the coco dataset with the tensorflow model without conversion is 0.4086891604267041 while average inference time is 1.2551904726028442 while using the converted model with openvino toolkit have average IOU of 0.1362183 with threshhold of 0.5 and inference time on average being slightly under 0.07. The model lost some accuracy after conversion but is fast enough for edge computation.
+
+Tabular summary
+|        |IOU               |Inference time    |
+|Vanilla |0.4086891604267041|1.2551904726028442|
+|Optmized|0.1362183         |0.06908           |
 
 ## Assess Model Use Cases
 
