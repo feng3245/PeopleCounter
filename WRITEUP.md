@@ -13,7 +13,8 @@ There might be reasons to handle custom layers either of your own operations or 
 
 ## Comparing Model Performance
 
-Haven't really done this but would be easy to experiment with a sample in a seperate notebook on the video or several frames from the video. By taking snapshot of start time and end time for the inference time and average accuracy for the accuracy. We can also use summary to view the number of parameters of both models to estimate model size
+Performance is compared in a scientific manner using the coco dataset in MetricCalculationForInference.ipynb. The result for IOU and inference speed is shown at the end. The average IOU value on the coco dataset with the tensorflow model without conversion is 0.4086891604267041 while average inference time is 1.2551904726028442 while using the converted model with openvino toolkit have average IOU of 0.1362183 with threshhold of 0.5 and inference time on average being slightly under 0.07. The model lost some accuracy after conversion but is fast enough for edge computation.
+
 ## Assess Model Use Cases
 
 1. Estimate people in a building
